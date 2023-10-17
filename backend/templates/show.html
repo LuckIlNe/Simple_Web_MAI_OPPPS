@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block title %}
+Создание статьи
+{% endblock %}
+
+{% block content %}
+<div class="container">
+<div class="card" >
+    <div class="card-header">
+      <div class="row">
+        <div class="card-body col-md-9">
+      <h4>{{ article.title }}</h4>
+        </div>
+        <div class="card-body col-sm-1 offset-sm-0">
+          <a class="btn btn-outline-warning" href="/article/edit?id={{ article.id }}" role="button">Редакт.</a>
+        </div>
+        <div class="card-body col-sm-1">
+            <a class="btn btn-outline-danger" href="/article/remove?id={{ article.id }}" role="button">Удалить</a>
+          </div>
+      </div>
+    </div>
+    <div class="row">
+    <div class="card-body col-md-2">
+      <ul class="list-group list-group-flush" >
+        <li class="list-group-item" style="width: 24rem;" >Источник: <a href="{{ article.source }}">ссылка</a></li>
+        <li class="list-group-item" style="width: 24rem;" >Категории: {{ article.categories|join(', ')  }}</li>
+        <li class="list-group-item" style="width: 24rem;" >Авторы: {{ article.authors|join(', ') }}</li>
+        <li class="list-group-item" style="width: 24rem;" >Дата: {{ article.date.strftime('%d-%m-%Y') }}</li>
+        <li class="list-group-item" style="width: 24rem;" >Сложность: {{ article[5] }}</li>
+        <li></li>
+      </ul>
+    </div>
+    <div class="card-body col-md-5">
+      <p>
+        {{ article.text }}
+      </p>
+    </div>
+  </div>
+    </div>
+</div>
+{% endblock %}

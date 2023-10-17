@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block title %}
+Редактирование статьи
+{% endblock %}
+
+{% block content %}
+</form>
+<form method="post" action="./edit?id={{ article.id }}">
+  <div class="form-group">
+    <label for="title">Заголовок статьи</label>
+    <input type="text" class="form-control" id="title" name="title" placeholder="Заголовок" value="{{ article.title }}">
+  </div>
+  <div class="form-group">
+    <label for="source">Истоник URL</label>
+    <input type="url" class="form-control" id="source" name="source" placeholder="Истоник" value="{{ article.source }}">
+  </div>
+  <div class="form-group">
+    <label for="date">Введите дату</label>
+    <input type="date" class="form-control" id="date" name="date" value="{{ article.date.strftime('%Y-%m-%d') }}">
+  </div>
+  <div class="form-group">
+    <label for="categories">Категории</label>
+    <select class="form-control selectpicker" id="categories" name="categories" multiple>
+      {% for category in allCategories %}
+          <option {% if category in article.categories %} selected {%  endif %}>{{ category }}</option>
+      {% endfor %}
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="authors">Авторы</label>
+    <select class="form-control selectpicker" id="authors" name="authors" multiple>
+      {% for author in allAuthors %}
+        <option {% if author in article.authors %} selected {%  endif %}>{{ author }}</option>
+      {% endfor %}
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="capasity">Сложность</label>
+    <input type="text" class="form-control" id="capacity" name="capacity" placeholder="Сложность" value="{{ article.capacity }}">
+  </div>
+  <div class="form-group">
+    <label for="text">Текст статьи</label>
+    <textarea class="form-control" id="text" name="text" rows="6">{{ article.text }}</textarea>
+  </div>
+  <p>
+  </p>
+  <button type="submit" class="btn btn-success">Отправить файл</button>
+</form>
+{% endblock %} 
